@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruit Classification</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Fruit Classification</h1>
+        <div class="card">
+            <div class="card-body">
+                <form action="/train" method="post">
+                    <div class="mb-3">
+                        <label for="dataset_path" class="form-label">Dataset Directory:</label>
+                        <input type="text" class="form-control" id="dataset_path" name="dataset_path" required>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Train</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

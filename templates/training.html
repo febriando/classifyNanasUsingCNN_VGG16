@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Training Dataset</title>
+</head>
+<body>
+    <h1>Training Dataset</h1>
+
+    <form action="/training" method="POST">
+        <div>
+            <label for="train_dir">Dataset Directory:</label>
+            <input type="text" id="train_dir" name="train_dir" placeholder="Enter directory path" required>
+        </div>
+        <div>
+            <button type="submit">Train</button>
+        </div>
+    </form>
+
+    {% if position == 'training' %}
+        <p>Training dataset from directory: {{ train_dir }}</p>
+        {% if success %}
+            <p>Training successful!</p>
+        {% endif %}
+    {% endif %}
+</body>
+</html>

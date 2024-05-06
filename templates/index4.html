@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Klasifikasi Kematangan Buah Nanas</title>
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 50px;
+        }
+        .upload-container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .result-container {
+            max-width: 500px;
+            margin: 0 auto;
+            margin-top: 20px;
+            display: none;
+        }
+        .result-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="upload-container">
+        <h1 class="text-center">Klasifikasi Kematangan Buah Nanas</h1>
+        <form id="upload-form" enctype="multipart/form-data" action="/submit" method="POST">
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="file-input" accept="image/*" multiple>
+                <label class="custom-file-label" for="file-input">Pilih Gambar</label>
+            </div>
+            <div class="text-center mt-3">
+                <button type="submit" class="btn btn-primary">Upload</button>
+            </div>
+        </form>
+    </div>
+    <div class="result-container">
+        <h2 class="result-title">Hasil Klasifikasi:</h2>
+        <div id="result-content"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Mengubah label input file saat dipilih
+            $('.custom-file-input').on('change', function() {
+                var files = $(this).prop('files');
+                var names = [];
+                for (var i = 0; i < files.length; i++) {
+                    names.push(files[i].name);
+                }
+                $(this).next('.custom-file-label').html(names.join(', '));
+            });
+            
+            // Menampilkan hasil klasifikasi
+            function showResult(result) {
+                $('.result-container').show();
+                var resultContent = $('#result-content');
+                resultContent.empty();
+
+                var predictedClass = result.predicted_class_vgg;
+                var confidence = result.confidence_vgg;
+
+                var resultHtml = '<p>Prediksi: <strong>' + predictedClass + '</strong></p>';
+                resultHtml += '<p>Confidence: <strong>' + confidence + '</strong></p>';
+
+                resultContent.html(resultHtml);
+            }
+
+            // Mengirim form upload secara langsung (tanpa AJAX)
+            $('#upload-form').on('submit', function(e) {
+                e.preventDefault();
+                var formData = new FormData(this);
+
+                $.ajax({
+                    url: $(this).attr('action'),
+                    type: $(this).attr('method'),
+                    data: formData,
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    success: function(response) {
+                        showResult(response);
+                    },
+                    error: function(xhr, status, error) {
+                        var errorMessage = xhr.responseJSON.message;
+                        alert('Error: ' + errorMessage);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

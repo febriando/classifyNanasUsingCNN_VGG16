@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Klasifikasi Kematangan Buah Nanas</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+	<div class="container">
+		<h1>Klasifikasi Kematangan Buah Nanas</h1>
+		<form action="{{ url_for('predict') }}" method="post" enctype="multipart/form-data">
+			<label for="file-upload" class="custom-file-upload">
+				<i class="fa fa-cloud-upload"></i> Pilih gambar nanas untuk diklasifikasi
+			</label>
+			<input id="file-upload" type="file" name="file" accept="image/*">
+			<button type="submit">Klasifikasi</button>
+		</form>
+		{% if prediction %}
+		<div class="result">
+			<h2>Hasil Klasifikasi</h2>
+			<img src="{{ img_path }}" alt="gambar nanas">
+			<p>Klasifikasi Berdasarkan Warna: {{ prediction }}</p>
+			<p>Confidence: {{ confidence }}</p>
+			<p>Klasifikasi Berdasarkan Tekstur: {{ texture_prediction }}</p>
+			<p>Confidence: {{ texture_confidence }}</p>
+		</div>
+		{% endif %}
+	</div>
+</body>
+</html>

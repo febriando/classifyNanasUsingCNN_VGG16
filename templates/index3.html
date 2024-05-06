@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Klasifikasi Kematangan Buah Nanas</title>
+</head>
+<body>
+    <h1>Klasifikasi Kematangan Buah Nanas</h1>
+    <form method="POST" enctype="multipart/form-data" action="/predict">
+        <input type="file" name="file" accept=".jpg,.jpeg,.png">
+        <input type="submit" value="classify">
+    </form>
+    {% if prediction %}
+        <p>Prediksi: {{ prediction }}</p>
+    {% endif %}
+</body>
+</html>

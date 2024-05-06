@@ -1,0 +1,37 @@
+/* Gaya untuk membuat tombol */
+.button {
+    background-color: #4CAF50; /* Warna latar belakang tombol */
+    border: none; /* Hilangkan garis tepi */
+    color: white; /* Warna teks */
+    padding: 15px 32px; /* Padding kiri dan kanan */
+    text-align: center; /* Tengahkan teks */
+    text-decoration: none; /* Hilangkan underline pada teks */
+    display: inline-block; /* Buat tombol menjadi inline */
+    font-size: 16px; /* Ukuran font */
+    margin: 4px 2px; /* Margin atas dan bawah, kiri dan kanan */
+    cursor: pointer; /* Ubah bentuk kursor menjadi tangan saat hover */
+    border-radius: 50px; /* Membuat sudut tombol menjadi bundar */
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.2), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.14); /* Membuat efek bayangan pada tombol */
+  }
+  
+  /* Gaya untuk membuat gambar dengan efek bayangan */
+  img {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); /* Efek bayangan pada gambar */
+    border-radius: 50%; /* Membuat sudut gambar menjadi bundar */
+    width: 200px; /* Lebar gambar */
+    height: 200px; /* Tinggi gambar */
+    object-fit: cover; /* Atur cara gambar diatur dalam kotak */
+  }
+  
+  /* Gaya untuk membuat kotak hasil */
+  .result-box {
+    background-color: #f2f2f2; /* Warna latar belakang kotak */
+    border: none; /* Hilangkan garis tepi */
+    padding: 20px; /* Padding kiri dan kanan */
+    text-align: center; /* Tengahkan teks */
+    font-size: 20px; /* Ukuran font */
+    margin-top: 50px; /* Margin atas */
+    border-radius: 10px; /* Membuat sudut kotak menjadi sedikit bundar */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); /* Efek bayangan pada kotak */
+  }
+  

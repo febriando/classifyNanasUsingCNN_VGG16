@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fruit Maturity Classification</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <a class="navbar-brand" href="/">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/training">Training</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/testing">Testing</a>
+                </li>
+                <!-- Uncomment the following code if you want to include the testgroup feature -->
+                <!--
+                <li class="nav-item">
+                    <a class="nav-link" href="/testgroup">Test Group</a>
+                </li>
+                -->
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2>Fruit Maturity Classification</h2>
+        
+        {% if position == 'training' %}
+            <div class="alert alert-success">
+                Training completed successfully for directory: {{ train_dir }}
+            </div>
+        {% endif %}
+
+        {% if position == 'testing' %}
+            <h3>Testing Result:</h3>
+            <div class="alert alert-info">
+                The predicted maturity level is: {{ output }}
+            </div>
+        {% endif %}
+
+        <!-- Uncomment the following code if you want to include the testgroup feature -->
+        <!--
+        {% if position == 'testgroup' %}
+            <h3>Test Group Result:</h3>
+            <div>
+                Total Images: {{ total }}
+            </div>
+            <div>
+                Belum Matang: {{ bm }}
+            </div>
+            <div>
+                Setengah Matang: {{ sm }}
+            </div>
+            <div>
+                Matang: {{ mm }}
+            </div>
+            <h3>Confusion Matrix:</h3>
+            <table class="table table-bordered">
+                <tr>
+                    <th></th>
+                    <th>Belum Matang</th>
+                    <th>Setengah Matang</th>
+                    <th>Matang</th>
+                </tr>
+                <tr>
+                    <th>Belum Matang</th>
+                    <td>{{ csv['belum'] }}</td>
+                    <td>{{ csv['belum_to_setengah'] }}</td>
+                    <td>{{ csv['belum_to_matang'] }}</td>
+                </tr>
+                <tr>
+                    <th>Setengah Matang</th>
+                    <td>{{ csv['setengah_to_belum'] }}</td>
+                    <td>{{ csv['setengah'] }}</td>
+                    <td>{{ csv['setengah_to_matang'] }}</td>
+                </tr>
+                <tr>
+                    <th>Matang</th>
+                    <td>{{ csv['matang_to_belum'] }}</td>
+                    <td>{{ csv['matang_to_setengah'] }}</td>
+                    <td>{{ csv['matang'] }}</td>
+                </tr>
+            </table>
+        {% endif %}
+        -->
+
+        <form action="/training" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="train_dir">Training Directory:</label>
+                <input type="text" class="form-control" id="train_dir" name="train_dir" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Train</button>
+        </form>
+
+        <form action="/testing" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="testing_file">Testing Image:</label>
+                <input type="file" class="form-control-file" id="testing_file" name="testing_file" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Test</button>
+        </form>
+
+        <!-- Uncomment the following code if you want to include the testgroup feature -->
+        <!--
+        <form action="/testgroup" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="testgroup_dir">Test Group Directory:</label>
+                <input type="text" class="form-control" id="testgroup_dir" name="testgroup_dir" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Test Group</button>
+        </form>
+        -->
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
